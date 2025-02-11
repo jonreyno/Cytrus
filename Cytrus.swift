@@ -116,6 +116,15 @@ public struct Cytrus : @unchecked Sendable {
         }
     }
     
+    public var playCoins: UInt16 {
+        set {
+            cytrusObjC.setPlayCoins(newValue)
+        }
+        get {
+            cytrusObjC.getPlayCoins()
+        }
+    }
+    
     public func loadAmiibo(with url: URL) -> Bool {
         cytrusObjC.loadAmiibo(url)
     }

@@ -555,6 +555,14 @@ static void TryShutdown() {
     Settings::values.steps_per_hour = stepsPerHour;
 }
 
+-(void) setPlayCoins:(uint16_t)playCoins {
+    Service::PTM::Module::SetPlayCoins(playCoins);
+}
+
+-(uint16_t) getPlayCoins {
+    return Service::PTM::Module::GetPlayCoins();
+}
+
 -(BOOL) loadAmiibo:(NSURL *)url {
     auto& system = Core::System::GetInstance();
     auto& service_manager = system.ServiceManager();

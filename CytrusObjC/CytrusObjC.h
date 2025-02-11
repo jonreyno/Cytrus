@@ -32,6 +32,7 @@
 #include "core/frontend/applets/swkbd.h"
 #include "core/hle/service/am/am.h"
 #include "core/hle/service/fs/archive.h"
+#include "core/hle/service/ptm/ptm.h"
 #include "core/hle/service/nfc/nfc.h"
 #include "core/loader/loader.h"
 #include "core/loader/smdh.h"
@@ -297,6 +298,8 @@ typedef NS_ENUM(NSUInteger, KeyboardButtonConfig) {
 -(void) updateSettings;
 
 -(void) setStepsPerHour:(uint16_t)stepsPerHour;
+-(void) setPlayCoins:(uint16_t)playCoins;
+-(uint16_t) getPlayCoins;
 -(BOOL) loadAmiibo:(NSURL *)url;
 @end
 
