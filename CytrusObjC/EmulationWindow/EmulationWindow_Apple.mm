@@ -27,7 +27,7 @@
 #endif
 
 EmulationWindow_Apple::EmulationWindow_Apple(CA::MetalLayer* surface, bool is_secondary, CGSize size) : Frontend::EmuWindow(is_secondary), host_window(surface), m_size(size) {
-    is_portrait = true;
+    is_portrait = size.height > size.width;;
     if (!surface)
         return;
     

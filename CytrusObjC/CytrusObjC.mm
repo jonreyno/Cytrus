@@ -280,6 +280,8 @@ static void TryShutdown() {
     system.ApplySettings();
     Settings::LogSettings();
     
+    top_window->OnSurfaceChanged(top_window->surface);
+    
     auto frontCamera = std::make_unique<Camera::iOSFrontCameraFactory>();
     auto rearCamera = std::make_unique<Camera::iOSRearCameraFactory>();
     Camera::RegisterFactory("av_front", std::move(frontCamera));

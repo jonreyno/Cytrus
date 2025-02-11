@@ -226,7 +226,7 @@ void EmuWindow::UpdateCurrentFramebufferLayout(u32 width, u32 height, bool is_po
         case Settings::LayoutOption::MobileLandscape:
             layout =
                 Layout::LargeFrameLayout(width, height, Settings::values.swap_screen.GetValue(),
-                                         false, 2.25f, Layout::VerticalAlignment::Top);
+                                         false, 2.2833333f, Layout::VerticalAlignment::Top);
             break;
         case Settings::LayoutOption::Default:
         default:

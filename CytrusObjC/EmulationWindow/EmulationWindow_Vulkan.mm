@@ -15,8 +15,6 @@ EmulationWindow_Vulkan::EmulationWindow_Vulkan(CA::MetalLayer* surface, std::sha
     
     if (core_context = CreateSharedContext(); !core_context)
         return;
-    
-    OnFramebufferSizeChanged();
 };
 
 
@@ -32,7 +30,6 @@ void EmulationWindow_Vulkan::OrientationChanged(UIInterfaceOrientation orientati
     is_portrait = orientation == UIInterfaceOrientationPortrait;
     
     OnSurfaceChanged(surface);
-    OnFramebufferSizeChanged();
 };
 
 

@@ -593,6 +593,7 @@ std::pair<unsigned, unsigned> GetMinimumSizeFromLayout(Settings::LayoutOption la
         min_width = Settings::values.swap_screen ? Core::kScreenBottomWidth : Core::kScreenTopWidth;
         min_height = Core::kScreenBottomHeight;
         break;
+    case Settings::LayoutOption::MobileLandscape:
     case Settings::LayoutOption::LargeScreen:
         min_width = static_cast<u32>(
             Settings::values.swap_screen
