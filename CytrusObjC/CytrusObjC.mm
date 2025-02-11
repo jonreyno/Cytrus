@@ -231,7 +231,10 @@ static void TryShutdown() {
     Settings::values.render_3d.SetValue((Settings::StereoRenderOption)[[NSNumber numberWithInteger:[defaults doubleForKey:@"cytrus.render3D"]] unsignedIntValue]);
     Settings::values.factor_3d.SetValue([[NSNumber numberWithInteger:[defaults doubleForKey:@"cytrus.factor3D"]] unsignedIntValue]);
     Settings::values.mono_render_option.SetValue((Settings::MonoRenderOption)[[NSNumber numberWithInteger:[defaults doubleForKey:@"cytrus.monoRender"]] unsignedIntValue]);
+    Settings::values.dump_textures.SetValue([defaults boolForKey:@"cytrus.dumpTextures"]);
+    Settings::values.custom_textures.SetValue([defaults boolForKey:@"cytrus.customTextures"]);
     Settings::values.preload_textures.SetValue([defaults boolForKey:@"cytrus.preloadTextures"]);
+    Settings::values.async_custom_loading.SetValue([defaults boolForKey:@"cytrus.asyncCustomLoading"]);
     
     // audio
     Settings::values.audio_muted = [defaults boolForKey:@"cytrus.audioMuted"];
@@ -505,7 +508,10 @@ static void TryShutdown() {
     Settings::values.render_3d.SetValue((Settings::StereoRenderOption)[[NSNumber numberWithInteger:[defaults doubleForKey:@"cytrus.render3D"]] unsignedIntValue]);
     Settings::values.factor_3d.SetValue([[NSNumber numberWithInteger:[defaults doubleForKey:@"cytrus.factor3D"]] unsignedIntValue]);
     Settings::values.mono_render_option.SetValue((Settings::MonoRenderOption)[[NSNumber numberWithInteger:[defaults doubleForKey:@"cytrus.monoRender"]] unsignedIntValue]);
+    Settings::values.dump_textures.SetValue([defaults boolForKey:@"cytrus.dumpTextures"]);
+    Settings::values.custom_textures.SetValue([defaults boolForKey:@"cytrus.customTextures"]);
     Settings::values.preload_textures.SetValue([defaults boolForKey:@"cytrus.preloadTextures"]);
+    Settings::values.async_custom_loading.SetValue([defaults boolForKey:@"cytrus.asyncCustomLoading"]);
     
     // audio
     Settings::values.audio_muted = [defaults boolForKey:@"cytrus.audioMuted"];
