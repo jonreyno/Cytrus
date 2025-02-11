@@ -111,6 +111,7 @@ static void TryShutdown() {
     Core::System::GetInstance().Shutdown();
     top_window.reset();
     InputManager::Shutdown();
+    Common::Log::Stop();
 };
 
 @implementation CytrusGameInformation
