@@ -285,6 +285,9 @@ typedef NS_ENUM(NSUInteger, KeyboardButtonConfig) {
 -(BOOL) running;
 -(BOOL) stopped;
 
+-(BOOL) isScreenSwapped;
+-(void) swapScreen:(BOOL)isScreenSwapped isPortrait:(BOOL)isPortrait;
+
 -(void) orientationChanged:(UIInterfaceOrientation)orientation metalView:(UIView *)metalView;
 
 -(NSMutableArray<NSURL *> *) installedGamePaths;

@@ -394,6 +394,15 @@ static void TryShutdown() {
     return stop_run && !pause_emulation;
 }
 
+-(void) swapScreen:(BOOL)swapScreen isPortrait:(BOOL)isPortrait {
+    Settings::values.swap_screen.SetValue(swapScreen);
+    Core::System::GetInstance().GPU().Renderer().UpdateCurrentFramebufferLayout(isPortrait);
+}
+
+-(BOOL) isScreenSwapped {
+    return Settings::values.swap_screen.GetValue();
+}
+
 -(void) orientationChanged:(UIInterfaceOrientation)orientation metalView:(UIView *)metalView {
     if (!Core::System::GetInstance().IsPoweredOn())
         return;

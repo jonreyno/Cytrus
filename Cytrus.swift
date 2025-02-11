@@ -86,6 +86,14 @@ public struct Cytrus : @unchecked Sendable {
         cytrusObjC.stopped()
     }
     
+    public func swapScreen(_ swapScreen: Bool, _ isPortrait: Bool) {
+        cytrusObjC.swapScreen(swapScreen, isPortrait:isPortrait)
+    }
+    
+    public func isScreenSwapped() -> Bool {
+        cytrusObjC.isScreenSwapped()
+    }
+    
     public func orientationChange(with orientation: UIInterfaceOrientation, using mtkView: UIView) {
         cytrusObjC.orientationChanged(orientation, metalView: mtkView)
     }
