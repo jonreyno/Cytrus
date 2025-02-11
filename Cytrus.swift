@@ -116,6 +116,10 @@ public struct Cytrus : @unchecked Sendable {
         }
     }
     
+    public func loadAmiibo(with url: URL) -> Bool {
+        cytrusObjC.loadAmiibo(url)
+    }
+    
     public struct Multiplayer : @unchecked Sendable {
         public static let shared = Multiplayer()
         

@@ -554,4 +554,11 @@ static void TryShutdown() {
 -(void) setStepsPerHour:(uint16_t)stepsPerHour {
     Settings::values.steps_per_hour = stepsPerHour;
 }
+
+-(BOOL) loadAmiibo:(NSURL *)url {
+    auto& system = Core::System::GetInstance();
+    auto& service_manager = system.ServiceManager();
+    auto nfc = service_manager.GetService<Service::NFC::Module::Interface>("nfc:u");
+    return nfc->LoadAmiibo([url.path UTF8String]);
+}
 @end
