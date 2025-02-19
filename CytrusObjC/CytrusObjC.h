@@ -36,6 +36,7 @@
 #include "core/hle/service/nfc/nfc.h"
 #include "core/loader/loader.h"
 #include "core/loader/smdh.h"
+#include "core/system_titles.h"
 #include "network/network_settings.h"
 #include "video_core/gpu.h"
 #include "video_core/renderer_base.h"
@@ -294,6 +295,7 @@ typedef NS_ENUM(NSUInteger, KeyboardButtonConfig) {
 
 -(NSMutableArray<NSURL *> *) installedGamePaths;
 -(NSMutableArray<NSURL *> *) systemGamePaths;
+-(NSMutableArray<NSURL *> *) homeMenuPaths;
 
 -(void) updateSettings;
 

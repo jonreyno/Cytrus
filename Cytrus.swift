@@ -106,6 +106,10 @@ public struct Cytrus : @unchecked Sendable {
         cytrusObjC.systemGamePaths() as? [URL] ?? []
     }
     
+    public func home() -> [URL] {
+        cytrusObjC.homeMenuPaths() as? [URL] ?? []
+    }
+    
     public func updateSettings() {
         cytrusObjC.updateSettings()
     }

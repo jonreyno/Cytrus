@@ -461,14 +461,53 @@ static void TryShutdown() {
                 bool executable{};
                 const Loader::ResultStatus result = loader->IsExecutable(executable);
                 if (Loader::ResultStatus::Success == result && executable) {
-                    [paths addObject:[NSURL fileURLWithPath:[NSString stringWithCString:path.c_str() encoding:NSUTF8StringEncoding]]];
+                    auto smdh = InformationForGame::GetSMDHData(path);
+                    if (!smdh.empty()){
+                        auto smdh_struct = reinterpret_cast<Loader::SMDH*>(smdh.data());
+                        if (smdh_struct->flags & Loader::SMDH::Flags::Visible){
+                            [paths addObject:[NSURL fileURLWithPath:[NSString stringWithCString:path.c_str() encoding:NSUTF8StringEncoding]]];
+                        }
+                    }
                 }
             }
         }
         return true;
     };
     
-    ScanDir(nullptr, "", FileUtil::GetUserPath(FileUtil::UserPath::NANDDir) + "00000000000000000000000000000000/title/00040030");
+    ScanDir(nullptr, "", FileUtil::GetUserPath(FileUtil::UserPath::NANDDir) + "00000000000000000000000000000000/title/00040010");
+    
+    return paths;
+}
+
+-(NSMutableArray<NSURL *> *) homeMenuPaths {
+    NSMutableArray<NSURL *> *paths = @[].mutableCopy;
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    auto region = [[NSNumber numberWithInteger:[defaults doubleForKey:@"cytrus.regionValue"]] unsignedIntValue];
+    
+    auto homePath = Core::GetHomeMenuNcchPath(region);
+    if (FileUtil::Exists(homePath)){
+        auto loader = Loader::GetLoader(homePath);
+        if (loader) {
+            bool executable{};
+            const Loader::ResultStatus result = loader->IsExecutable(executable);
+            if (Loader::ResultStatus::Success == result && executable) {
+                [paths addObject:[NSURL fileURLWithPath:[NSString stringWithCString:homePath.c_str() encoding:NSUTF8StringEncoding]]];
+            }
+        }
+    }
+    
+    auto homeManualPath = Core::GetHomeMenuManualNcchPath(region);
+    if (FileUtil::Exists(homeManualPath)){
+        auto loader = Loader::GetLoader(homeManualPath);
+        if (loader) {
+            bool executable{};
+            const Loader::ResultStatus result = loader->IsExecutable(executable);
+            if (Loader::ResultStatus::Success == result && executable) {
+                [paths addObject:[NSURL fileURLWithPath:[NSString stringWithCString:homeManualPath.c_str() encoding:NSUTF8StringEncoding]]];
+            }
+        }
+    }
     
     return paths;
 }

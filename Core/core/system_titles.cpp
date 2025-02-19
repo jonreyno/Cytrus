@@ -30,6 +30,14 @@ static constexpr SystemTitle home_menu_title = {
                       0x0000B102},
 };
 
+static constexpr u64 home_menu_manual_title_id_high = 0x00040010;
+static constexpr SystemTitle home_menu_manual_title = {
+    .name = "HOME Menu Digital Manual (N3DS)",
+    .sets = SystemTitleSet::New3ds,
+    .title_id_lows = {0x2002C800, 0x2002CF00, 0x2002D000, 0x2002D000, 0,
+                      0x2002D700, 0},
+};
+
 static const std::array<SystemTitleCategory, NUM_SYSTEM_TITLE_CATEGORIES>
     system_titles =
         {
@@ -139,12 +147,7 @@ static const std::array<SystemTitleCategory, NUM_SYSTEM_TITLE_CATEGORIES>
                              .title_id_lows = {0x20023100, 0x20024100, 0x20025100, 0x20025100, 0,
                                                0, 0},
                          },
-                         {
-                             .name = "HOME Menu Digital Manual (N3DS)",
-                             .sets = SystemTitleSet::New3ds,
-                             .title_id_lows = {0x2002C800, 0x2002CF00, 0x2002D000, 0x2002D000, 0,
-                                               0x2002D700, 0},
-                         },
+                         home_menu_manual_title,
                          {
                              .name = "Friends List Digital Manual (N3DS)",
                              .sets = SystemTitleSet::New3ds,
@@ -1181,9 +1184,19 @@ u64 GetHomeMenuTitleId(u32 region) {
            static_cast<u64>(home_menu_title.title_id_lows[region]);
 }
 
+u64 GetHomeMenuManualTitleId(u32 region) {
+    return (static_cast<u64>(home_menu_manual_title_id_high) << 32) |
+           static_cast<u64>(home_menu_manual_title.title_id_lows[region]);
+}
+
 std::string GetHomeMenuNcchPath(u32 region) {
     return Service::AM::GetTitleContentPath(Service::FS::MediaType::NAND,
                                             GetHomeMenuTitleId(region));
+}
+
+std::string GetHomeMenuManualNcchPath(u32 region) {
+    return Service::AM::GetTitleContentPath(Service::FS::MediaType::NAND,
+                                            GetHomeMenuManualTitleId(region));
 }
 
 std::optional<u32> GetSystemTitleRegion(u64 title_id) {
