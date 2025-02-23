@@ -484,6 +484,7 @@ static void TryShutdown() {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     auto region = [[NSNumber numberWithInteger:[defaults doubleForKey:@"cytrus.regionValue"]] unsignedIntValue];
+    region = region > 6 ? 0 : region;
     
     auto homePath = Core::GetHomeMenuNcchPath(region);
     if (FileUtil::Exists(homePath)){
